@@ -1,0 +1,53 @@
+"""
+어떠한 수 N이 1이 될 때까지 다음의 두 과정 중 하나를 반복적으로 선택히여 수행하려고 한다. 단, 두 번째 연산은 N이 K로 나누어떨어질 때만 선택할 수 있다.
+
+1. N에서 1을 뺀다
+2. N을 K로 나눈다.
+
+예를 들어 N이 17, K가 4라고 가정하자. 이때 1번의 과정을 한 번 수행하면 N은 16이 된다. 이후에 2번의 과정을 두 번 수행하면 N은 1이 된다. 결과적으로 이 경우 전체 과정을 실행한 횟수는 3이 된다. 이는 N을 1로 만드는 최소 횟수이다.
+
+N과 K가 주어질 때 N이 1이 될 때까지 1번 혹은 2번의 과정을 수행해야 하는 최소 횟수를 구하는 프로그램을 작성하시오.
+
+- 첫째 줄에 테스트 케이스 수 T
+- 두번 째 부터 N(2<=N<=100,000)과 K(2<=K<=100,000)가 공백으로 구분되며 각각 자연수로 주어진다. 이때 입력으로 주어지는 N은 항상 K보다 크거나 같다. 
+
+EX )
+1
+25 5
+
+"""
+
+def inputValue():
+    value = list(map(int, input().split()))
+    if value[0] < value[1] :
+        inputValue()
+    elif value[0] <= 1 or value[0] >= 100000:
+        inputValue()
+    elif value[1] <= 1 or value[1] >= 100000:
+        inputValue()
+    else:
+        return {"N":value[0], "K":value[1]}
+
+def process(a, b, i, count):
+    if a % b == 0:
+        a = int(a/b)
+        count += 1
+        process(a, b, i, count)
+    elif a < b and a != 1:
+        while a != 1:
+            count += 1
+            a -= 1
+        process(a, b, i, count)    
+    elif a < b and a == 1:
+        print("#{} {}".format(i, count))
+    else:
+        count += (a % b)
+        a -= (a % b)
+        process(a, b, i, count)
+
+T = int(input())
+
+count = 0
+for i in range(1, T+1):
+    a = inputValue()
+    b = process(a["N"], a["K"], i, count)
