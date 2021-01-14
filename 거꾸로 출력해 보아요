@@ -1,0 +1,12 @@
+""" # 거꾸로 출력해 보아요.
+입력 8
+출력 8 7 6 5 4 3 2 1 0
+"""
+
+T = int(input())
+
+result = ""
+temp = " "
+for i in range(T,-1,-1):
+    result += str(i) + temp
+print(result)
