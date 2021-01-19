@@ -68,8 +68,6 @@ for i in range(1, T+1):
     K = inputValue[1]
 
     grade = ["A+", "A0", "A-", "B+", "B0", "B-","C+", "C0", "C-", "D0"]
-    resultGrade = grade * int(N/10)
-    resultGrade.sort()
 
     scoreList = []
     for n in range(1, N+1):
@@ -78,9 +76,8 @@ for i in range(1, T+1):
         score[1] = score[1] * 0.45
         score[2] = score[2] * 0.20
         scoreList.append(sum(score))
-    scoreList.sort(reverse=True)
-    # print(scoreList)
 
-    for j in range(1, N-K+2):
-        print("#{} {}".format(j, resultGrade[K-1]))
-        K += 1
+    a = scoreList.copy()
+    a.sort(reverse=True)
+
+    print("#{} {}".format(i, grade[int(a.index(scoreList[K-1])/(N/10))])
