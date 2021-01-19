@@ -1,0 +1,4 @@
+a = [str(i) for i in range(1, int(input())+1)]
+b = ["-"*(j.count("3")+j.count("6")+j.count("9")) if "3" in j or "6" in j or "9" in j else j for j in a]
+
+print(" ".join(b))
