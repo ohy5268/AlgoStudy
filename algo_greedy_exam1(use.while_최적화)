@@ -1,0 +1,15 @@
+for i in range(1, int(input())+1):
+    values = list(map(int, input().split()))
+    result = 0
+    while True :
+        mod = int(values[0] % values[1])
+        result += mod
+        values[0] = int(values[0] - mod)
+        
+        if values[0] < values[1]:
+            break
+        
+        result += 1
+        values[0] = values[0] // values[1]
+    result -= 1
+    print("#{} {}".format(i, result))
