@@ -1,0 +1,10 @@
+for i in range(1, int(input())+1):
+    score = input().strip()
+
+    L = sum(int(j) for j in score[:int(len(score)/2)])
+    R = sum(int(k) for k in score[int(len(score)/2):])
+
+    if L == R:
+        print("#%d LUCKY" % i)
+    else:
+        print("#%d READY" % i)
