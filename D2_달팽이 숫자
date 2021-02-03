@@ -1,0 +1,45 @@
+for i in range(1, int(input())+1):
+    N = int(input())
+    frame = [[0]*N for _ in range(N)]
+    frame[0] = [ j for j in range(1, N+1)]
+    shift = ["D","L","U","R"]
+    fs = ""
+    k = N * N - N
+    m = 0
+    n = 1
+    while True:
+        fs += shift[m] * (N-n)
+        fs += shift[m+1] * (N-n)
+        k -= (N-n)*2
+        if k == 0:
+            break
+        if m == 2:
+            m = 0
+            n += 1
+        else:
+            m += 2
+            n += 1
+    
+    row = 0
+    col = N - 1
+    value = N
+    for _fs in fs:
+        if _fs == "D":
+           row += 1
+           value += 1
+           frame[row][col] = value
+        elif _fs == "L":
+            col -= 1
+            value += 1
+            frame[row][col] = value
+        elif _fs == "U":
+            row -= 1
+            value += 1
+            frame[row][col] = value
+        else:
+            col += 1
+            value += 1
+            frame[row][col] = value
+    print(f"#{i}")
+    for _f in frame:
+        print(" ".join([str(__f) for __f in _f]))
